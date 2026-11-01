@@ -1,8 +1,12 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
 [project]
 name = "contact_manager"
 version = "0.0.1"
 description = "Contact manager with simple desing and full privacy"
-readme = "README.md"
+readme = "contact_manager/README.md"
 requires-python = ">=3.14"
 keywords = ["cookiecutter", "template", "qt"]
 classifiers = [
@@ -24,7 +28,7 @@ dependencies = [
     "coverage>=7.13.5",
     "pre-commit>=4.6.0",
     "pyinstaller>=6.20.0",
-    "pyqt6>=6.11.0",
+    "pyqt6>=6.7.0",
     "pytest>=9.0.3",
     "ruff>=0.15.12",
     "ty>=0.0.34",
@@ -102,10 +106,14 @@ pythonpath = ["."]
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "cookiecutter.json",
+    "LICENSE",
     "justfile",
     "pyproject.toml",
-    "README.md",
-    "hooks/",
+    "contact_manager/README.md",
     "contact_manager/",
+    "docs/",
+    "scripts/",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["contact_manager"]
