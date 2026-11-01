@@ -22,6 +22,10 @@ The selected location is saved in your user settings and reused the next time
 the app starts. Use **Options > Use default database** to switch back. The
 current location is also shown in the Options menu.
 
+Open **Help > Keyboard shortcuts** for the current shortcut reference:
+Ctrl+N creates a contact, Ctrl+S saves it, Ctrl+F focuses search, and Escape
+clears the search field when it is focused.
+
 First name, last name, and country are required to save a contact. Existing
 contacts are split into first and last names and locations into city and
 country when the database is upgraded.

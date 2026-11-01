@@ -529,9 +529,33 @@ class ContactBookWindow(QMainWindow):
 
         help_menu = QMenu("&Help", self)
         menu_bar.addMenu(help_menu)
+        shortcuts_action = QAction("&Keyboard shortcuts", self)
+        help_menu.addAction(shortcuts_action)
+        shortcuts_action.triggered.connect(lambda: self.show_keyboard_shortcuts())
+        help_menu.addSeparator()
         about_action = QAction("&About Northstar", self)
         help_menu.addAction(about_action)
         about_action.triggered.connect(lambda: self.show_about())
+
+    def show_keyboard_shortcuts(self) -> None:
+        shortcuts = (
+            (QKeySequence.StandardKey.New, "Create a new contact"),
+            (QKeySequence.StandardKey.Save, "Save the current contact"),
+            (QKeySequence.StandardKey.Find, "Focus contact search"),
+            (Qt.Key.Key_Escape, "Clear search when the search field is focused"),
+        )
+        rows = "".join(
+            "<tr>"
+            f"<td style='padding:6px 18px 6px 0;'><b>{html.escape(QKeySequence(key).toString(QKeySequence.SequenceFormat.NativeText))}</b></td>"
+            f"<td style='padding:6px 0;'>{html.escape(description)}</td>"
+            "</tr>"
+            for key, description in shortcuts
+        )
+        QMessageBox.information(
+            self,
+            "Keyboard shortcuts",
+            "<table>" + rows + "</table>",
+        )
 
     def update_database_menu(self) -> None:
         self.database_location_action.setText(f"Database: {DB_PATH.name}")
